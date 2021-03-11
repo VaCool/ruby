@@ -24,8 +24,11 @@ begin
   else
     puts PATTERN_CARD_TEXT
     card = Card.new(gets.chomp)
-    logger.log(user.name, user.age, card.validate_or_raise)
+    result = card.validate_or_raise
+    puts result
+    logger.log(user.name, user.age, result)
   end
 rescue StandardError => e
+  puts "Erro: #{e.message}"
   logger.log(user.name, user.age, e.message)
 end
