@@ -14,11 +14,12 @@ HEREDOC
 
 puts 'Enter your name press enter and enter your age'
 logger = Logger.new
+user = User.new(gets.chomp, gets.chomp)
 begin
-  user = User.new(gets.chomp, gets.chomp)
-  if !/^[0-9]*$/.match(user.age)
+  case true
+  when !/^[0-9]*$/.match(user.age)
     logger.log(user.name, user.age, 'incorrect age, age must be a number')
-  elsif user.age.to_i < 13
+  when user.age.to_i < 13
     logger.log(user.name, user.age, 'your to young for card')
   else
     puts PATTERN_CARD_TEXT
